@@ -1,0 +1,23 @@
+#Importa a biblioteca tkinter
+import tkinter as tk
+#Iporta a função messagebox
+from tkinter import messagebox
+#Função quando o botão for clicado
+def mostrar_mensagem():
+    #Exibe uma caixa de mensagem
+    messagebox.showinfo("Informação", "Botão Clicado!")
+#Cria a janela principal (raiz) da aplicação
+janela = tk.Tk() #Tk()inicializa a janela principal
+janela.title("Interface Gráfica com Tkinter") #Define o título
+janela.geometry("800x500") #Define o tamanho da janela
+#Cria um rótulo (label) que exibe uma mensagem na janela
+rotulo = tk.Label(janela, text="Bem vindo à sua primeira interface gráfica!")
+#O método pack() posiciona o rótulo na janela, com padding (espaçamento) vertical de 20px
+rotulo.pack(pady=20)
+#Cria um botão e associa a função mostrar_mensagem à ação de clique no botão
+botao = tk.Button(janela, text="Clique Aqui", command=mostrar_mensagem)
+#O método pack() posiciona o botão na janela, com padding (espaçamento) vertical de 20px
+botao.pack(pady=20)
+#Inicia o loop principal da interface gráfica, que mantém a janela aberta
+#O método mainloop() escuta os eventos da interface, como cliques de botões
+janela.mainloop()
