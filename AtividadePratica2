@@ -1,0 +1,13 @@
+#Importa a biblioteca tkinter
+import tkinter as tk
+#Criação da janela principal
+janela = tk.Tk()
+janela.title("Exemplo de Imagem com PhotoImage")
+#Carrega a imagem (apenas PNG ou GIF)
+imagem = tk.PhotoImage(file="logo1.png")
+#Criação de um rótulo (Label) com a imagem
+rotulo = tk.Label(janela, image=imagem)
+#Adiciona um espaçamento vertical de 10px
+rotulo.pack(pady=10)
+#Mantém a janela aberta
+janela.mainloop()
