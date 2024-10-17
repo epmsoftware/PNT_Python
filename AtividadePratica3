@@ -1,0 +1,39 @@
+# Importa a biblioteca tkinter e o módulo messagebox para exibir caixas de mensagens
+import tkinter as tk
+from tkinter import messagebox
+
+# Função que será chamada quando o botão for clicado
+def mostrar_mensagem():
+    messagebox.showinfo("Informação", "Botão Clicado!")
+
+# Cria a janela principal
+janela = tk.Tk()
+janela.title("Interface Gráfica com Imagens")
+janela.geometry("800x500")  # Aumenta o tamanho da janela para acomodar imagens
+
+# --- Carregando Imagem ---
+# Carrega a imagem usando a classe PhotoImage. Lembre-se de usar caminhos corretos para seus arquivos.
+# A imagem precisa estar em formato PNG ou GIF.
+imagem_logo = tk.PhotoImage(file="logo1.png")
+
+# Cria um rótulo (Label) com a imagem carregada
+rotulo_imagem = tk.Label(janela, image=imagem_logo)
+# Posiciona o rótulo na janela com padding
+rotulo_imagem.pack(pady=20)  # Adiciona um espaçamento vertical de 10px
+
+# --- Rótulo de Texto ---
+# Cria um rótulo de texto abaixo da imagem
+rotulo_texto = tk.Label(janela, text="Bem-vindo! Esta é uma interface gráfica com imagens.")
+rotulo_texto.pack(pady=20)  # Adiciona espaçamento vertical
+
+# --- Imagem no Botão ---
+# Carrega uma outra imagem para ser usada dentro de um botão (pode ser a mesma imagem)
+imagem_botao = tk.PhotoImage(file="botao1.png")  # Exemplo: imagem 'botao1.png'
+imagem_botao = imagem_botao.subsample(2,2)
+
+# Cria um botão que exibe a imagem e o associa à função mostrar_mensagem
+botao_imagem = tk.Button(janela, image=imagem_botao, command=mostrar_mensagem)
+botao_imagem.pack(pady=20)  # Posiciona o botão com espaçamento vertical
+
+# Mantém a janela aberta
+janela.mainloop()
