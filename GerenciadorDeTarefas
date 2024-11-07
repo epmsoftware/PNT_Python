@@ -1,0 +1,69 @@
+import tkinter as tk
+from tkinter import messagebox
+
+# Função para adicionar tarefa
+def adicionar_tarefa():
+    tarefa = entrada_tarefa.get()
+    if tarefa != "":
+        lista_tarefas.insert(tk.END, tarefa)
+        entrada_tarefa.delete(0, tk.END)
+    else:
+        messagebox.showwarning("Entrada Inválida", "Por favor, insira uma tarefa.")
+        
+# Função para remover tarefa
+def remover_tarefa():
+    try:
+        indice_selecionado = lista_tarefas.curselection()[0]
+        lista_tarefas.delete(indice_selecionado)
+    except IndexError:
+        messagebox.showwarning("Nenhuma Tarefa Selecionada", "Por favor, selecione uma tarefa para remover.")
+    
+# Função para concluir tarefa (marcar com risco no meio)
+def concluir_tarefa():
+    try:
+        indice_selecionado = lista_tarefas.curselection()[0]
+        tarefa = lista_tarefas.get(indice_selecionado)
+        
+        if not tarefa.startswith("✔"):
+            tarefa_concluida = "✔" + tarefa
+            lista_tarefas.delete(indice_selecionado)
+            lista_tarefas.insert(indice_selecionado, f"{tarefa_concluida}[Concluída]")
+    except IndexError:
+        messagebox.showwarning("Nenhuma Tarefa Selecionada", "Por favor, selecione uma tarefa para marcar como concluída.")
+
+# Form principal
+form = tk.Tk()
+form.title("Gerenciador de Tarefas")
+form.geometry("800x500")
+form.configure(bg="#ff8c00")
+        
+# Campo de texto para adicionar nova tarefa
+entrada_tarefa = tk.Entry(form, width=70)
+entrada_tarefa.pack(pady=10)
+entrada_tarefa.configure(bg="lightgrey")
+
+# Botão para adicionar tarefa
+imagem_adicionar = tk.PhotoImage(file="adicionar.png")
+imagem_adicionar = imagem_adicionar.subsample(4,4)
+botao_adicionar = tk.Button(form, image=imagem_adicionar, text="", command=adicionar_tarefa)
+botao_adicionar.pack(padx=10, pady=5)
+
+# Lista de tarefas
+lista_tarefas = tk.Listbox(form, width=70, height=20, selectmode=tk.SINGLE)
+lista_tarefas.pack(pady=5)
+lista_tarefas.configure(bg="lightgrey")
+
+# Botão para marcar como concluída
+imagem_concluir = tk.PhotoImage(file="concluir.png")
+imagem_concluir = imagem_concluir.subsample(4,4)
+botao_concluir = tk.Button(form, image=imagem_concluir, text="", command=concluir_tarefa)
+botao_concluir.pack(side=tk.LEFT, padx=10, pady=5)
+        
+# Botão para remover tarefa
+imagem_remover = tk.PhotoImage(file="remover.png")
+imagem_remover = imagem_remover.subsample(4,4)
+botao_remover = tk.Button(form, image=imagem_remover, text="", command=remover_tarefa)
+botao_remover.pack(side=tk.RIGHT, padx=10, pady=5)
+        
+# Inicializando a aplicação
+form.mainloop()
