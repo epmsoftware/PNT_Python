@@ -18,7 +18,7 @@ def remover_tarefa():
     except IndexError:
         messagebox.showwarning("Nenhuma Tarefa Selecionada", "Por favor, selecione uma tarefa para remover.")
     
-# Função para concluir tarefa (marcar com risco no meio)
+# Função para concluir tarefa
 def concluir_tarefa():
     try:
         indice_selecionado = lista_tarefas.curselection()[0]
